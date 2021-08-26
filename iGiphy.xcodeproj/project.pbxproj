@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		5BDB7AAA26D7A82600F78B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AA926D7A82600F78B94 /* AppDelegate.swift */; };
-		5BDB7AAC26D7A82600F78B94 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AAB26D7A82600F78B94 /* SceneDelegate.swift */; };
-		5BDB7AAE26D7A82600F78B94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AAD26D7A82600F78B94 /* ViewController.swift */; };
 		5BDB7AB126D7A82600F78B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BDB7AAF26D7A82600F78B94 /* Main.storyboard */; };
 		5BDB7AB326D7A82A00F78B94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BDB7AB226D7A82A00F78B94 /* Assets.xcassets */; };
 		5BDB7AB626D7A82A00F78B94 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BDB7AB426D7A82A00F78B94 /* LaunchScreen.storyboard */; };
+		5BDB7AC026D7BA8700F78B94 /* GIFsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7ABF26D7BA8700F78B94 /* GIFsFeedViewController.swift */; };
+		5BDB7AC426D7BDCC00F78B94 /* UISearchBar+TextFieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AC326D7BDCC00F78B94 /* UISearchBar+TextFieldColor.swift */; };
+		5BDB7AC626D7BE4300F78B94 /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AC526D7BE4300F78B94 /* UIColor+Theme.swift */; };
+		5BDB7AC826D7C1E000F78B94 /* GIFsFeedViewController+SearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AC726D7C1E000F78B94 /* GIFsFeedViewController+SearchBarDelegate.swift */; };
+		5BDB7ACB26D7CE7700F78B94 /* FavouritesGIFsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7ACA26D7CE7700F78B94 /* FavouritesGIFsViewController.swift */; };
+		5BDB7ACD26D7D18A00F78B94 /* FavouritesGIFsViewController+CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7ACC26D7D18A00F78B94 /* FavouritesGIFsViewController+CollectionViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5BDB7AA626D7A82600F78B94 /* iGiphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGiphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDB7AA926D7A82600F78B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5BDB7AAB26D7A82600F78B94 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5BDB7AAD26D7A82600F78B94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5BDB7AB026D7A82600F78B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5BDB7AB226D7A82A00F78B94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BDB7AB526D7A82A00F78B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BDB7AB726D7A82A00F78B94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BDB7ABF26D7BA8700F78B94 /* GIFsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFsFeedViewController.swift; sourceTree = "<group>"; };
+		5BDB7AC326D7BDCC00F78B94 /* UISearchBar+TextFieldColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+TextFieldColor.swift"; sourceTree = "<group>"; };
+		5BDB7AC526D7BE4300F78B94 /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		5BDB7AC726D7C1E000F78B94 /* GIFsFeedViewController+SearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GIFsFeedViewController+SearchBarDelegate.swift"; sourceTree = "<group>"; };
+		5BDB7ACA26D7CE7700F78B94 /* FavouritesGIFsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesGIFsViewController.swift; sourceTree = "<group>"; };
+		5BDB7ACC26D7D18A00F78B94 /* FavouritesGIFsViewController+CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritesGIFsViewController+CollectionViewDataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,59 @@
 		5BDB7AA826D7A82600F78B94 /* iGiphy */ = {
 			isa = PBXGroup;
 			children = (
+				5BDB7AC226D7BDB700F78B94 /* Extensions */,
+				5BDB7ABE26D7BA3D00F78B94 /* View Controllers */,
+				5BDB7AC126D7BB3D00F78B94 /* Views */,
 				5BDB7AA926D7A82600F78B94 /* AppDelegate.swift */,
-				5BDB7AAB26D7A82600F78B94 /* SceneDelegate.swift */,
-				5BDB7AAD26D7A82600F78B94 /* ViewController.swift */,
-				5BDB7AAF26D7A82600F78B94 /* Main.storyboard */,
 				5BDB7AB226D7A82A00F78B94 /* Assets.xcassets */,
-				5BDB7AB426D7A82A00F78B94 /* LaunchScreen.storyboard */,
 				5BDB7AB726D7A82A00F78B94 /* Info.plist */,
 			);
 			path = iGiphy;
+			sourceTree = "<group>";
+		};
+		5BDB7ABD26D7BA1B00F78B94 /* GIFs Feed View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5BDB7ABF26D7BA8700F78B94 /* GIFsFeedViewController.swift */,
+				5BDB7AC726D7C1E000F78B94 /* GIFsFeedViewController+SearchBarDelegate.swift */,
+			);
+			path = "GIFs Feed View Controller";
+			sourceTree = "<group>";
+		};
+		5BDB7ABE26D7BA3D00F78B94 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5BDB7ABD26D7BA1B00F78B94 /* GIFs Feed View Controller */,
+				5BDB7AC926D7CDE600F78B94 /* Favourites GIFs View Controller */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		5BDB7AC126D7BB3D00F78B94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5BDB7AAF26D7A82600F78B94 /* Main.storyboard */,
+				5BDB7AB426D7A82A00F78B94 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5BDB7AC226D7BDB700F78B94 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5BDB7AC326D7BDCC00F78B94 /* UISearchBar+TextFieldColor.swift */,
+				5BDB7AC526D7BE4300F78B94 /* UIColor+Theme.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5BDB7AC926D7CDE600F78B94 /* Favourites GIFs View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5BDB7ACA26D7CE7700F78B94 /* FavouritesGIFsViewController.swift */,
+				5BDB7ACC26D7D18A00F78B94 /* FavouritesGIFsViewController+CollectionViewDataSource.swift */,
+			);
+			path = "Favourites GIFs View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +189,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BDB7AAE26D7A82600F78B94 /* ViewController.swift in Sources */,
+				5BDB7ACB26D7CE7700F78B94 /* FavouritesGIFsViewController.swift in Sources */,
 				5BDB7AAA26D7A82600F78B94 /* AppDelegate.swift in Sources */,
-				5BDB7AAC26D7A82600F78B94 /* SceneDelegate.swift in Sources */,
+				5BDB7AC826D7C1E000F78B94 /* GIFsFeedViewController+SearchBarDelegate.swift in Sources */,
+				5BDB7AC626D7BE4300F78B94 /* UIColor+Theme.swift in Sources */,
+				5BDB7AC026D7BA8700F78B94 /* GIFsFeedViewController.swift in Sources */,
+				5BDB7AC426D7BDCC00F78B94 /* UISearchBar+TextFieldColor.swift in Sources */,
+				5BDB7ACD26D7D18A00F78B94 /* FavouritesGIFsViewController+CollectionViewDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +272,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +327,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -289,6 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7RWFZ45WK;
 				INFOPLIST_FILE = iGiphy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F7RWFZ45WK;
 				INFOPLIST_FILE = iGiphy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
