@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hdf-kz-lFg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -85,7 +86,7 @@
                             <constraint firstItem="49J-Qi-1cb" firstAttribute="trailing" secondItem="DFA-zH-mMK" secondAttribute="trailing" id="diu-y7-JBi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourites" image="star" selectedImage="star.fill" catalog="system" id="akY-2r-TzU"/>
+                    <tabBarItem key="tabBarItem" title="Favourites" image="heart" catalog="system" selectedImage="heart.fill" id="akY-2r-TzU"/>
                     <navigationItem key="navigationItem" title="Favourites" id="TOX-e2-oTO"/>
                     <connections>
                         <outlet property="collectionView" destination="DFA-zH-mMK" id="bJS-aS-cAG"/>
@@ -107,7 +108,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="312-oU-274" id="ZuU-7v-yfc"/>
+                                    <outlet property="delegate" destination="312-oU-274" id="UgL-5i-PNv"/>
                                 </connections>
                             </searchBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-NP-NAa">
@@ -137,7 +138,7 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.89999997615814209" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ZyL-iP-unk">
+                            <activityIndicatorView hidden="YES" opaque="NO" clipsSubviews="YES" alpha="0.89999997615814209" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ZyL-iP-unk">
                                 <rect key="frame" x="184.5" y="406" width="45" height="45"/>
                                 <color key="backgroundColor" red="0.792156862745098" green="0.60784313725490191" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -166,7 +167,7 @@
                             <constraint firstItem="ZyL-iP-unk" firstAttribute="centerY" secondItem="xUN-J7-GZp" secondAttribute="centerY" id="zF8-2r-qbJ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feed" image="bolt" catalog="system" selectedImage="list.dash" id="zCw-Pr-4zG"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="list.dash" catalog="system" selectedImage="list.dash" id="zCw-Pr-4zG"/>
                     <connections>
                         <outlet property="activityIndicator" destination="ZyL-iP-unk" id="tVK-VE-xBf"/>
                         <outlet property="searchBar" destination="sr2-Zd-a9N" id="GSP-nw-cL5"/>
@@ -200,10 +201,9 @@
     </scenes>
     <color key="tintColor" red="0.792156862745098" green="0.60784313725490191" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
-        <image name="bolt" catalog="system" width="101" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="list.dash" catalog="system" width="128" height="85"/>
-        <image name="star" width="128" height="128"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
