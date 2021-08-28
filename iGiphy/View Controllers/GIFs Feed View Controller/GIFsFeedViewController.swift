@@ -36,6 +36,7 @@ class GIFsFeedViewController: UIViewController {
     private func setupViews() {
         setupSearchBar()
         setupTableView()
+        setupActivityIndicator()
     }
     
     private func setupSearchBar() {
@@ -44,23 +45,46 @@ class GIFsFeedViewController: UIViewController {
         searchBar.barTintColor = .babyPurple
         searchBar.backgroundImage = UIImage()
         searchBar.setTextFieldBackgroundColor(.white)
-        searchBar.rx.text.orEmpty
-            .filter( { !$0.isEmpty })
-            .distinctUntilChanged()
-            .throttle(.milliseconds(200), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] text in
-                self?.viewModel.searchForGifs(query: text)
-            }).disposed(by: disposeBag)
+        searchForGiftsOn(searchBar.rx.text.orEmpty)
+        resignSearchBarAsFirstResponder(event: searchBar.rx.searchButtonClicked)
+    }
+    
+    private func searchForGiftsOn(_ event: ControlProperty<String>) {
+        event.filter( { !$0.isEmpty })
+        .distinctUntilChanged()
+        .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
+        .subscribe(onNext: { [weak self] text in
+            self?.viewModel.searchForGifs(query: text)
+        }).disposed(by: disposeBag)
     }
     
     private func setupTableView() {
         tableView.contentInset = tableContentInset
+        tableView.separatorStyle = .none
         tableView.registerCellFromNib(named: GifTableViewCell.identifier)
-        viewModel.gifList.asObservable().bind(to: tableView.rx.items(cellIdentifier: GifTableViewCell.identifier)) { index, viewModel, cell in
+        bindGifListToTableView(gifList: viewModel.gifList)
+        resignSearchBarAsFirstResponder(event: tableView.rx.didScroll)
+    }
+    
+    private func bindGifListToTableView(gifList: Observable<[GifViewModel]>) {
+        gifList.asObservable().bind(to: tableView.rx.items(cellIdentifier: GifTableViewCell.identifier)) { [weak self] index, gifViewModel, cell in
             if let cell = cell as? GifTableViewCell {
-                cell.configure(viewModel: viewModel)
+                cell.configure(viewModel: gifViewModel)
+                cell.favouriteButton.rx.tap
+                    .asDriver()
+                    .drive(onNext: {
+                        self?.viewModel.toggleFavourite(id: gifViewModel.id)
+                    }).disposed(by: cell.disposeBag )
             }
         }.disposed(by: disposeBag)
+    }
+    
+    private func resignSearchBarAsFirstResponder(event: ControlEvent<Void>) {
+        event.subscribe(onNext: { [weak self] in self?.searchBar.resignFirstResponder() } ).disposed(by: disposeBag)
+    }
+    
+    private func setupActivityIndicator() {
+        viewModel.isLoading.bind(to: activityIndicator.rx.isAnimating).disposed(by: disposeBag)
     }
     
 }

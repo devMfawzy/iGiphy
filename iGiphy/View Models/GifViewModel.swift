@@ -10,9 +10,14 @@ import Foundation
 struct GifViewModel {
     
     private let model: GifObject
+    var isFavourite = false
     
     init(model: GifObject) {
         self.model = model
+    }
+    
+    var id: String {
+        model.id
     }
     
     var url: URL? {

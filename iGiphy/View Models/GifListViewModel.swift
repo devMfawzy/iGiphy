@@ -14,9 +14,15 @@ struct GifListViewModel: GifListViewModeling {
     private let service: GiphyServiceProtocol
     private var limit = 25
     private var offset = 0
-    private let gifsRelay = BehaviorRelay<[GifViewModel]>(value: [])
-    var gifList: Driver<[GifViewModel]> {
-        gifsRelay.asDriver()
+    private let isLoadingRelay = BehaviorRelay<Bool>(value: false)
+    private let gifListRelay = BehaviorRelay<[GifViewModel]>(value: [])
+    
+    var gifList: Observable<[GifViewModel]> {
+        gifListRelay.asObservable()
+    }
+    
+    var isLoading: Observable<Bool> {
+        isLoadingRelay.asObservable()
     }
     
     init(service: GiphyServiceProtocol = GiphyService()) {
@@ -32,13 +38,22 @@ struct GifListViewModel: GifListViewModeling {
     }
     
     private func map(observable: Single<GifsResponse>) {
+        isLoadingRelay.accept(true)
         observable.map {
             $0.data.map( {  GifViewModel(model: $0) })
         }.subscribe(onSuccess: { viewModels in
-            gifsRelay.accept(viewModels)
+            gifListRelay.accept(viewModels)
+            isLoadingRelay.accept(false)
         }, onFailure: { error in
             
         }).disposed(by: disposeBag)
+    }
+    
+    func toggleFavourite(id: String) {
+        var elements = gifListRelay.value
+        guard let targetIndex = elements.firstIndex(where: { $0.id == id }) else { return }
+        elements[targetIndex].isFavourite.toggle()
+        gifListRelay.accept(elements)
     }
     
 }
