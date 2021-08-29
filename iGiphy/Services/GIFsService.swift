@@ -7,21 +7,24 @@
 
 import RxSwift
 
-class GiphyService: GiphyServiceProtocol {
+class GIFsService: ServiceProtocol {
     
-    func fetchTrendingGifs(limit: Int = 25, offset: Int = 0) -> Single<GifsResponse> {
-        fetchGifs(url: GiphyApi.trendingAPIUrl, limit: limit, offset: offset)
+    func fetchGIFs(resourceType: ResourceType, offset: Int = 0) ->  Single<GIFsResponse> {
+        var url: URL?
+        switch resourceType {
+        case .getTrendingGIFs:
+            url = TrendingGIFsServiceResource(offset: offset).resourceURL
+        case .searchGIFsWith(let query):
+            url = SearchGIFsServiceResource(query: query, offset: offset).resourceURL
+        }
+        return fetchGIFs(url: url)
     }
     
-    func searchGifs(query: String, limit: Int = 25, offset: Int = 0) ->  Single<GifsResponse> {
-        fetchGifs(url: GiphyApi.searchAPIUrl(query: query), limit: limit, offset: offset)
-    }
-    
-    private func fetchGifs(url: URL?, limit: Int, offset: Int ) ->  Single<GifsResponse> {
+    private func fetchGIFs(url: URL?) ->  Single<GIFsResponse> {
         return Single.create { observer -> Disposable in
             guard let url = url else {
                 DispatchQueue.main.async {
-                    observer(.failure(GiphyServiceError.invalidUrl))
+                    observer(.failure(GIFsServiceError.invalidUrl))
                 }
                 return Disposables.create()
             }
@@ -31,7 +34,7 @@ class GiphyService: GiphyServiceProtocol {
                     let jsonDescoder = JSONDecoder()
                     jsonDescoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
-                        let decodedObject = try jsonDescoder.decode(GifsResponse.self, from: data)
+                        let decodedObject = try jsonDescoder.decode(GIFsResponse.self, from: data)
                         DispatchQueue.main.async {
                             observer(.success(decodedObject))
                         }
@@ -49,7 +52,7 @@ class GiphyService: GiphyServiceProtocol {
         }
     }
     
-    enum GiphyServiceError: Error {
+    enum GIFsServiceError: Error {
         case invalidUrl
     }
     

@@ -15,12 +15,13 @@ class GIFsFeedViewController: UIViewController {
     @IBOutlet private(set) weak var tableView: UITableView!
     @IBOutlet private(set) weak var activityIndicator: UIActivityIndicatorView!
 
+    private(set) var loadMoreThreshold = 0.75
     private let tableContentInset = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
     private let disposeBag = DisposeBag()
     
-    var viewModel: GifListViewModeling = GifListViewModel()
+    var viewModel: GIFListViewModeling = GIFListViewModel()
     
-    static func instantiate(viewModel: GifListViewModel) -> GIFsFeedViewController {
+    static func instantiate(viewModel: GIFListViewModel) -> GIFsFeedViewController {
         let storyboard = UIStoryboard.main
         let viewController = storyboard.instantiateViewController(withIdentifier: String(describing: self)) as! GIFsFeedViewController
         viewController.viewModel = viewModel
@@ -30,7 +31,7 @@ class GIFsFeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        viewModel.fetchTrendingGifList()
+        viewModel.fetchTrendingGIFList()
     }
 
     private func setupViews() {
@@ -45,41 +46,41 @@ class GIFsFeedViewController: UIViewController {
         searchBar.barTintColor = .babyPurple
         searchBar.backgroundImage = UIImage()
         searchBar.setTextFieldBackgroundColor(.white)
-        searchForGiftsOn(searchBar.rx.text.orEmpty)
-        resignSearchBarAsFirstResponder(event: searchBar.rx.searchButtonClicked)
+        searchForGIFtsOn(searchBar.rx.text.orEmpty)
+        resignSearchBarAsFirstResponder(onEvent: searchBar.rx.searchButtonClicked)
     }
     
-    private func searchForGiftsOn(_ event: ControlProperty<String>) {
+    private func searchForGIFtsOn(_ event: ControlProperty<String>) {
         event.filter( { !$0.isEmpty })
         .distinctUntilChanged()
         .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
         .subscribe(onNext: { [weak self] text in
-            self?.viewModel.searchForGifs(query: text)
+            self?.viewModel.searchForGIFs(query: text)
         }).disposed(by: disposeBag)
     }
     
     private func setupTableView() {
         tableView.contentInset = tableContentInset
         tableView.separatorStyle = .none
-        tableView.registerCellFromNib(named: GifTableViewCell.identifier)
-        bindGifListToTableView(gifList: viewModel.gifList)
-        resignSearchBarAsFirstResponder(event: tableView.rx.didScroll)
+        tableView.registerCellFromNib(named: GIFTableViewCell.identifier)
+        bindGIFListToTableView(viewModel.gifList)
+        resignSearchBarAsFirstResponder(onEvent: tableView.rx.didScroll)
     }
     
-    private func bindGifListToTableView(gifList: Observable<[GifViewModel]>) {
-        gifList.asObservable().bind(to: tableView.rx.items(cellIdentifier: GifTableViewCell.identifier)) { [weak self] index, gifViewModel, cell in
-            if let cell = cell as? GifTableViewCell {
-                cell.configure(viewModel: gifViewModel)
+    private func bindGIFListToTableView( _ gifList: Observable<[GIFViewModel]>) {
+        gifList.asObservable().bind(to: tableView.rx.items(cellIdentifier: GIFTableViewCell.identifier)) { [weak self] index, GIFViewModel, cell in
+            if let cell = cell as? GIFTableViewCell {
+                cell.configure(viewModel: GIFViewModel)
                 cell.favouriteButton.rx.tap
                     .asDriver()
                     .drive(onNext: {
-                        self?.viewModel.toggleFavourite(id: gifViewModel.id)
+                        self?.viewModel.toggleFavourite(id: GIFViewModel.id)
                     }).disposed(by: cell.disposeBag )
             }
         }.disposed(by: disposeBag)
     }
     
-    private func resignSearchBarAsFirstResponder(event: ControlEvent<Void>) {
+    private func resignSearchBarAsFirstResponder(onEvent event: ControlEvent<Void>) {
         event.subscribe(onNext: { [weak self] in self?.searchBar.resignFirstResponder() } ).disposed(by: disposeBag)
     }
     

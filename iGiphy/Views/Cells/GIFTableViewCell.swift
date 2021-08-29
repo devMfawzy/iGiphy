@@ -1,5 +1,5 @@
 //
-//  GifTableViewCell.swift
+//  GIFTableViewCell.swift
 //  iGiphy
 //
 //  Created by Mohamed Fawzy on 27/08/2021.
@@ -10,7 +10,7 @@ import SwiftyGif
 import RxSwift
 import RxCocoa
 
-class GifTableViewCell: UITableViewCell {
+class GIFTableViewCell: UITableViewCell {
 
     @IBOutlet private(set) weak var gifImageView: UIImageView!
     @IBOutlet private(set) weak var favouriteButton: UIButton!
@@ -22,7 +22,7 @@ class GifTableViewCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
     
-    func configure(viewModel: GifViewModel) {
+    func configure(viewModel: GIFViewModel) {
         if let url = viewModel.url {
             self.gifImageView.setGifFromURL(url, showLoader: false)
             setFavouriteButton(isFavourite: viewModel.isFavourite)

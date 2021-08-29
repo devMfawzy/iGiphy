@@ -1,5 +1,5 @@
 //
-//  GifViewModel.swift
+//  GIFViewModel.swift
 //  iGiphy
 //
 //  Created by Mohamed Fawzy on 26/08/2021.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct GifViewModel {
+struct GIFViewModel {
     
-    private let model: GifObject
+    private let model: GIFObject
     var isFavourite = false
     
-    init(model: GifObject) {
+    init(model: GIFObject) {
         self.model = model
     }
     
