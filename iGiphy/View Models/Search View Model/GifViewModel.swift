@@ -9,7 +9,7 @@ import Foundation
 
 struct GIFViewModel {
     
-    private let model: GIFObject
+    private(set) var model: GIFObject
     var isFavourite = false
     
     init(model: GIFObject) {

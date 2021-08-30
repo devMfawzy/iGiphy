@@ -10,6 +10,7 @@ import RxRelay
 
 class GIFsRepository: RepositoryProtocol {
     
+    private var dataStore: DataStoreProtocol?
     private let service: ServiceProtocol
     private var pagination = Pagination()
     private let disposeBag = DisposeBag()
@@ -21,9 +22,11 @@ class GIFsRepository: RepositoryProtocol {
         }
     }
     
-    init(defaultResource: ResourceType, service: ServiceProtocol = GIFsService()) {
+    init(defaultResource: ResourceType, service: ServiceProtocol = GIFsService(),
+         dataStore: DataStoreProtocol? = GIFsDataStore()) {
         self.resourceType = defaultResource
         self.service = service
+        self.dataStore = dataStore
     }
     
     func fetchNewGIFs(resourceType: ResourceType) -> Single<[GIFObject]> {
@@ -47,5 +50,22 @@ class GIFsRepository: RepositoryProtocol {
         }).disposed(by: disposeBag)
         return observable.map( { $0.data })
     }
+    
+    func saveGIF(_ gif: DataStoreGIF) {
+        dataStore?.saveItem(gif)
+    }
+    
+    func deleteGIF(id: String) {
+        dataStore?.deleteItem(id: id)
+    }
+    
+    func allSavedGIFs() -> [DataStoreGIF] {
+        dataStore?.getAllItems() ?? []
+    }
+    
+    func hasGIF(id: String) -> Bool {
+        dataStore?.hasItem(id: id) ?? false
+    }
+
     
 }

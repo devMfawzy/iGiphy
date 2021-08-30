@@ -73,12 +73,25 @@ struct GIFListViewModel: GIFListViewModeling {
         guard let targetIndex = elements.firstIndex(where: { $0.id == id }) else { return }
         elements[targetIndex].isFavourite.toggle()
         gifListRelay.accept(elements)
+        updateDataStore(gif: elements[targetIndex])
+    }
+    
+    func updateDataStore(gif: GIFViewModel) {
+        let model = gif.model
+        if gif.isFavourite {
+            let dataStoreGIF = DataStoreGIF(model: model)
+            repository.saveGIF(dataStoreGIF)
+        } else {
+            repository.deleteGIF(id: model.id)
+        }
     }
     
     private func mapToViewModel(_  model: Single<[GIFObject]>) -> Single<[GIFViewModel]> {
-        model.map {
-            $0.map( {  GIFViewModel(model: $0) })
-        }
+        model.map { $0.map( {
+            var viewModel = GIFViewModel(model: $0)
+            viewModel.isFavourite = repository.hasGIF(id: $0.id)
+            return viewModel
+        })}
     }
     
     private func setNewViewModels(_ observableViewModels: PrimitiveSequence<SingleTrait, [GIFViewModel]>) {
