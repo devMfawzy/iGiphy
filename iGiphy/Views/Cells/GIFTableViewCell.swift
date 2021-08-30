@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SwiftyGif
+import Kingfisher
 import RxSwift
-import RxCocoa
 
 class GIFTableViewCell: UITableViewCell {
 
@@ -23,10 +22,11 @@ class GIFTableViewCell: UITableViewCell {
     }
     
     func configure(viewModel: GIFViewModel) {
-        if let url = viewModel.url {
-            self.gifImageView.setGifFromURL(url, showLoader: false)
-            setFavouriteButton(isFavourite: viewModel.isFavourite)
+        favouriteButton.isHidden = true
+        self.gifImageView.kf.setImage(with: viewModel.url) { [weak self]_ in
+            self?.favouriteButton.isHidden = false
         }
+        setFavouriteButton(isFavourite: viewModel.isFavourite)
     }
     
     private func setFavouriteButton(isFavourite: Bool) {

@@ -19,6 +19,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sjj-aG-YYE">
                         <rect key="frame" x="0.0" y="0.0" width="348" height="232"/>
+                        <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Sjj-aG-YYE" secondAttribute="height" multiplier="3:2" id="Lws-zV-tku"/>
                         </constraints>
@@ -31,6 +32,7 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
                         <color key="tintColor" red="0.8980392157" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <size key="titleShadowOffset" width="9" height="0.0"/>
                         <state key="normal" image="favorite">
                             <color key="titleShadowColor" red="0.8980392157" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         </state>

@@ -5,7 +5,7 @@ target 'iGiphy' do
 
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'SwiftyGif', '~> 5.4.0'
+  pod 'Kingfisher', '~> 6.3.1'
   pod 'RealmSwift', '~> 10.13'
   
 end
