@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="291.5" width="446" height="79"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8B1-zk-1iz">
-                                <rect key="frame" x="198" y="16" width="50" height="50"/>
+                                <rect key="frame" x="376" y="16" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="62p-eB-Hqz"/>
                                     <constraint firstAttribute="height" constant="50" id="B7c-ms-DPi"/>
@@ -30,17 +30,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <color key="tintColor" red="0.8980392157" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <size key="titleShadowOffset" width="9" height="0.0"/>
-                                <state key="normal" image="favorite"/>
+                                <state key="normal" image="paper-plane"/>
                                 <state key="selected" image="favorite.fill">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                 </state>
                                 <state key="highlighted" title="❤️"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mi6-NG-LTs">
+                                <rect key="frame" x="20" y="18" width="46" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="0hv-6N-C49"/>
+                                    <constraint firstAttribute="width" constant="46" id="Rma-EN-ZpC"/>
+                                </constraints>
+                                <state key="normal" image="favorite"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8B1-zk-1iz" secondAttribute="trailing" constant="20" id="64m-4G-gZi"/>
+                            <constraint firstItem="mi6-NG-LTs" firstAttribute="leading" secondItem="FrA-D2-fsC" secondAttribute="leading" constant="20" symbolic="YES" id="KTN-Vx-qnI"/>
                             <constraint firstAttribute="bottom" secondItem="8B1-zk-1iz" secondAttribute="bottom" constant="13" id="Y0B-zc-rAI"/>
-                            <constraint firstItem="8B1-zk-1iz" firstAttribute="centerX" secondItem="FrA-D2-fsC" secondAttribute="centerX" id="kRC-XD-7dk"/>
+                            <constraint firstItem="mi6-NG-LTs" firstAttribute="top" secondItem="FrA-D2-fsC" secondAttribute="top" constant="18" id="eRT-fg-5Cr"/>
+                            <constraint firstAttribute="bottom" secondItem="mi6-NG-LTs" secondAttribute="bottom" constant="15" id="slt-57-9yD"/>
                             <constraint firstItem="8B1-zk-1iz" firstAttribute="top" secondItem="FrA-D2-fsC" secondAttribute="top" constant="16" id="unz-8G-9hh"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -55,7 +66,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sjj-aG-YYE">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sjj-aG-YYE">
                         <rect key="frame" x="0.0" y="0.0" width="446" height="297.5"/>
                         <color key="backgroundColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -76,8 +87,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="favouriteButton" destination="8B1-zk-1iz" id="qRJ-dl-UsC"/>
+                <outlet property="favouriteButton" destination="mi6-NG-LTs" id="O6S-xo-CtI"/>
                 <outlet property="gifImageView" destination="Sjj-aG-YYE" id="MYU-hG-Fzv"/>
+                <outlet property="shareButton" destination="8B1-zk-1iz" id="VPL-dn-CsS"/>
             </connections>
             <point key="canvasLocation" x="33.333333333333336" y="112.83482142857142"/>
         </tableViewCell>
@@ -85,6 +97,7 @@
     <resources>
         <image name="favorite" width="384" height="384"/>
         <image name="favorite.fill" width="364" height="364"/>
+        <image name="paper-plane" width="512" height="512"/>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

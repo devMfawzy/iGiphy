@@ -13,6 +13,8 @@ class GIFTableViewCell: UITableViewCell, ReusableViewIdentifiable {
 
     @IBOutlet private(set) weak var gifImageView: UIImageView!
     @IBOutlet private(set) weak var favouriteButton: UIButton!
+    @IBOutlet private(set) weak var shareButton: UIButton!
+
     
     private(set) var disposeBag = DisposeBag()
     

@@ -71,13 +71,31 @@ class GIFsFeedViewController: UIViewController {
         gifList.bind(to: tableView.rx.items(cellIdentifier: GIFTableViewCell.identifier)) { [weak self] index, gifViewModel, cell in
             if let cell = cell as? GIFTableViewCell {
                 cell.configure(viewModel: gifViewModel)
-                cell.favouriteButton.rx.tap
-                    .asDriver()
-                    .drive(onNext: {
-                        self?.viewModel.toggleFavourite(id: gifViewModel.id)
-                    }).disposed(by: cell.disposeBag )
+                self?.bindFavouriteButton(cell, viewModel: gifViewModel)
+                self?.bindShareButton(cell, viewModel: gifViewModel)
             }
         }.disposed(by: disposeBag)
+    }
+    
+    private func bindFavouriteButton(_ cell: GIFTableViewCell, viewModel: GIFViewModel) {
+        cell.favouriteButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.viewModel.toggleFavourite(id: viewModel.id)
+            }).disposed(by: cell.disposeBag )
+    }
+    
+    private func bindShareButton(_ cell: GIFTableViewCell, viewModel: GIFViewModel) {
+        cell.shareButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let url = viewModel.url else {
+                    return
+                }
+                let items = [url]
+                let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                self?.present(activityViewController, animated: true)
+            }).disposed(by: cell.disposeBag )
     }
     
     private func resignSearchBarAsFirstResponder(onEvent event: ControlEvent<Void>) {
