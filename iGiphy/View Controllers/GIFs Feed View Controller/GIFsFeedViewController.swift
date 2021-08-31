@@ -68,13 +68,13 @@ class GIFsFeedViewController: UIViewController {
     }
     
     private func bindGIFListToTableView( _ gifList: Observable<[GIFViewModel]>) {
-        gifList.asObservable().bind(to: tableView.rx.items(cellIdentifier: GIFTableViewCell.identifier)) { [weak self] index, GIFViewModel, cell in
+        gifList.bind(to: tableView.rx.items(cellIdentifier: GIFTableViewCell.identifier)) { [weak self] index, gifViewModel, cell in
             if let cell = cell as? GIFTableViewCell {
-                cell.configure(viewModel: GIFViewModel)
+                cell.configure(viewModel: gifViewModel)
                 cell.favouriteButton.rx.tap
                     .asDriver()
                     .drive(onNext: {
-                        self?.viewModel.toggleFavourite(id: GIFViewModel.id)
+                        self?.viewModel.toggleFavourite(id: gifViewModel.id)
                     }).disposed(by: cell.disposeBag )
             }
         }.disposed(by: disposeBag)
