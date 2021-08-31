@@ -16,10 +16,10 @@ import RealmSwift
         return "id"
     }
     
-    convenience init(model: GIFObject) {
+    convenience init(model: GIFModel) {
         self.init()
         self.id = model.id
-        self.url = model.images.fixedWidth.url
+        self.url = model.url
     }
     
 }

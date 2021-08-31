@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import RxSwift
 
-class GIFTableViewCell: UITableViewCell {
+class GIFTableViewCell: UITableViewCell, ReusableViewIdentifiable {
 
     @IBOutlet private(set) weak var gifImageView: UIImageView!
     @IBOutlet private(set) weak var favouriteButton: UIButton!

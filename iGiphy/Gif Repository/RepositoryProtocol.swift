@@ -8,10 +8,10 @@
 import RxSwift
 
 protocol RepositoryProtocol {
-    func fetchNewGIFs(resourceType: ResourceType) -> Single<[GIFObject]>
-    func loadMoreGIFs() -> Single<[GIFObject]>
-    func saveGIF(_ gif: DataStoreGIF)
+    func fetchNewGIFs(resourceType: ResourceType) -> Observable<[GIFModel]>
+    func loadMoreGIFs() -> Observable<[GIFModel]>
+    func saveGIF(id: String)
     func deleteGIF(id: String)
-    func allSavedGIFs() -> [DataStoreGIF]
+    func allSavedGIFs() -> Observable<[GIFModel]>
     func hasGIF(id: String) -> Bool
 }

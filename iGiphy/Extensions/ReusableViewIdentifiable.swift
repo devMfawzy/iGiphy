@@ -19,8 +19,6 @@ extension ReusableViewIdentifiable where Self: UIView {
     
 }
 
-extension UITableViewCell: ReusableViewIdentifiable { }
-
 extension UITableView {
     
     func registerCellFromNib(named name: String) {

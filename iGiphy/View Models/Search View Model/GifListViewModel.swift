@@ -32,76 +32,54 @@ struct GIFListViewModel: GIFListViewModeling {
         isLoadingRelay.asObservable()
     }
     
-    init(repository: RepositoryProtocol = GIFsRepository(defaultResource: .getTrendingGIFs)) {
+    init(repository: RepositoryProtocol = GIFsRepository.shared) {
         self.repository = repository
     }
     
     func fetchTrendingGIFList() {
         guard !isLoadingRelay.value else { return }
         isLoadingRelay.accept(true)
-        let observableModels = repository.fetchNewGIFs(resourceType: .getTrendingGIFs)
-        let observableViewModels = mapToViewModel(observableModels)
-        setNewViewModels(observableViewModels)
+        repository.fetchNewGIFs(resourceType: .getTrendingGIFs).subscribe(onNext: { values in
+            let viewModel = values.map() { GIFViewModel(model: $0) }
+            gifListRelay.accept(viewModel)
+            isLoadingRelay.accept(false)
+            moreGIFsToLoadRelay.accept(true)
+        }).disposed(by: disposeBag)
     }
     
     func searchForGIFs(query: String) {
         guard !isLoadingRelay.value else { return }
         isLoadingRelay.accept(true)
-        let observableModels = repository.fetchNewGIFs(resourceType: .searchGIFsWith(query: query))
-        let observableViewModels = mapToViewModel(observableModels)
-        setNewViewModels(observableViewModels)
+        repository.fetchNewGIFs(resourceType: .searchGIFsWith(query: query)).subscribe(onNext: { values in
+            let viewModel = values.map() { GIFViewModel(model: $0) }
+            gifListRelay.accept(viewModel)
+            isLoadingRelay.accept(false)
+            moreGIFsToLoadRelay.accept(true)
+        }).disposed(by: disposeBag)
     }
     
     func loadMoreGIFs() {
         guard !isLoadingRelay.value else { return }
         isLoadingRelay.accept(true)
-        let observableModels = repository.loadMoreGIFs()
-        mapToViewModel(observableModels)
-            .subscribe( onSuccess: { newViewModels in
-                var viewmodels = self.gifListRelay.value
-                viewmodels.append(contentsOf: newViewModels)
-                gifListRelay.accept(viewmodels)
-                isLoadingRelay.accept(false)
-                moreGIFsToLoadRelay.accept(true)
-            }, onFailure: { error in
-                handleError(error)
-            }).disposed(by: disposeBag)
+        repository.loadMoreGIFs().subscribe(onNext: { values in
+            let viewModel = values.map() { GIFViewModel(model: $0) }
+            gifListRelay.accept(viewModel)
+            isLoadingRelay.accept(false)
+            moreGIFsToLoadRelay.accept(true)
+        }).disposed(by: disposeBag)
     }
     
     func toggleFavourite(id: String) {
-        var elements = gifListRelay.value
-        guard let targetIndex = elements.firstIndex(where: { $0.id == id }) else { return }
-        elements[targetIndex].isFavourite.toggle()
-        gifListRelay.accept(elements)
-        updateDataStore(gif: elements[targetIndex])
+        guard let gif = gifListRelay.value.first(where: { $0.id == id }) else { return }
+        updateGIFFavouriteStatus(gif: gif)
     }
     
-    func updateDataStore(gif: GIFViewModel) {
-        let model = gif.model
+    func updateGIFFavouriteStatus(gif: GIFViewModel) {
         if gif.isFavourite {
-            let dataStoreGIF = DataStoreGIF(model: model)
-            repository.saveGIF(dataStoreGIF)
+            repository.deleteGIF(id: gif.id)
         } else {
-            repository.deleteGIF(id: model.id)
+            repository.saveGIF(id: gif.id)
         }
-    }
-    
-    private func mapToViewModel(_  model: Single<[GIFObject]>) -> Single<[GIFViewModel]> {
-        model.map { $0.map( {
-            var viewModel = GIFViewModel(model: $0)
-            viewModel.isFavourite = repository.hasGIF(id: $0.id)
-            return viewModel
-        })}
-    }
-    
-    private func setNewViewModels(_ observableViewModels: PrimitiveSequence<SingleTrait, [GIFViewModel]>) {
-        observableViewModels.subscribe(onSuccess: { viewModels in
-            gifListRelay.accept(viewModels)
-            isLoadingRelay.accept(false)
-            moreGIFsToLoadRelay.accept(true)
-        }, onFailure: { error in
-            handleError(error)
-        }).disposed(by: disposeBag)
     }
     
     private func handleError(_ error: Error) {

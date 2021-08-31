@@ -1,5 +1,5 @@
 //
-//  FavouritesGIFsViewController.swift
+//  FavouriteGIFsViewController.swift
 //  iGiphy
 //
 //  Created by Mohamed Fawzy on 26/08/2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavouritesGIFsViewController: UIViewController {
+class FavouriteGIFsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     

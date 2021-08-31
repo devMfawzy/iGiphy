@@ -33,9 +33,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="45"/>
                         <color key="tintColor" red="0.8980392157" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <size key="titleShadowOffset" width="9" height="0.0"/>
-                        <state key="normal" image="favorite">
-                            <color key="titleShadowColor" red="0.8980392157" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </state>
+                        <state key="normal" image="favorite"/>
                         <state key="selected" image="favorite.fill">
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                         </state>

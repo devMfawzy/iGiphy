@@ -9,6 +9,5 @@ import Foundation
 
 struct GIFObject: Decodable {
     let id: String
-    let title: String
     let images: GIFImage
 }

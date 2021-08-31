@@ -9,10 +9,9 @@ import Foundation
 
 struct GIFViewModel {
     
-    private(set) var model: GIFObject
-    var isFavourite = false
+    private var model: GIFModel
     
-    init(model: GIFObject) {
+    init(model: GIFModel) {
         self.model = model
     }
     
@@ -21,11 +20,11 @@ struct GIFViewModel {
     }
     
     var url: URL? {
-        URL(string: model.images.fixedWidth.url)
+        URL(string: model.url)
     }
     
-    var title: String {
-        model.title
+    var isFavourite: Bool {
+        model.isFavourite
     }
     
 }
