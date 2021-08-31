@@ -64,6 +64,7 @@ class GIFsFeedViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.registerCellFromNib(named: GIFTableViewCell.identifier)
         bindGIFListToTableView(viewModel.gifList)
+        bindTableViewSelection()
         resignSearchBarAsFirstResponder(onEvent: tableView.rx.didScroll)
     }
     
@@ -96,6 +97,15 @@ class GIFsFeedViewController: UIViewController {
                 let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
                 self?.present(activityViewController, animated: true)
             }).disposed(by: cell.disposeBag )
+    }
+    
+    private func bindTableViewSelection() {
+        tableView.rx.modelSelected(GIFViewModel.self)
+            .subscribe(onNext: { [weak self] viewModel in
+                guard let self = self else { return }
+                let viewController = FullScreenGIFViewController(viewModel: viewModel)
+                self.present(viewController, animated: true)
+            }).disposed(by: disposeBag)
     }
     
     private func resignSearchBarAsFirstResponder(onEvent event: ControlEvent<Void>) {

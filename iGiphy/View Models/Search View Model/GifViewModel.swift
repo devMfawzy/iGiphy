@@ -9,22 +9,14 @@ import Foundation
 
 struct GIFViewModel {
     
-    private var model: GIFModel
-    
+    let id: String
+    let url: URL?
+    var isFavourite: Bool
+
     init(model: GIFModel) {
-        self.model = model
-    }
-    
-    var id: String {
-        model.id
-    }
-    
-    var url: URL? {
-        URL(string: model.url)
-    }
-    
-    var isFavourite: Bool {
-        model.isFavourite
+        self.id = model.id
+        self.url = URL(string: model.url)
+        self.isFavourite = model.isFavourite
     }
     
 }

@@ -25,6 +25,8 @@
 		5BD7C24326DD29D7006D00C2 /* FavouriteGIFListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7C24226DD29D7006D00C2 /* FavouriteGIFListViewModel.swift */; };
 		5BD7C24526DD2AC4006D00C2 /* FavouriteGIFListViewModeling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7C24426DD2AC4006D00C2 /* FavouriteGIFListViewModeling.swift */; };
 		5BD7C24726DD32D1006D00C2 /* GIFModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7C24626DD32D1006D00C2 /* GIFModel.swift */; };
+		5BD7C24D26DE5D0D006D00C2 /* FullScreenGIFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD7C24B26DE5D0D006D00C2 /* FullScreenGIFViewController.swift */; };
+		5BD7C24E26DE5D0D006D00C2 /* FullScreenGIFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD7C24C26DE5D0D006D00C2 /* FullScreenGIFViewController.xib */; };
 		5BDB7AAA26D7A82600F78B94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDB7AA926D7A82600F78B94 /* AppDelegate.swift */; };
 		5BDB7AB126D7A82600F78B94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BDB7AAF26D7A82600F78B94 /* Main.storyboard */; };
 		5BDB7AB326D7A82A00F78B94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BDB7AB226D7A82A00F78B94 /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 		5BD7C24226DD29D7006D00C2 /* FavouriteGIFListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteGIFListViewModel.swift; sourceTree = "<group>"; };
 		5BD7C24426DD2AC4006D00C2 /* FavouriteGIFListViewModeling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteGIFListViewModeling.swift; sourceTree = "<group>"; };
 		5BD7C24626DD32D1006D00C2 /* GIFModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIFModel.swift; sourceTree = "<group>"; };
+		5BD7C24B26DE5D0D006D00C2 /* FullScreenGIFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenGIFViewController.swift; sourceTree = "<group>"; };
+		5BD7C24C26DE5D0D006D00C2 /* FullScreenGIFViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullScreenGIFViewController.xib; sourceTree = "<group>"; };
 		5BDB7AA626D7A82600F78B94 /* iGiphy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGiphy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BDB7AA926D7A82600F78B94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BDB7AB026D7A82600F78B94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,6 +189,15 @@
 			path = "Favourite GIFs View Model";
 			sourceTree = "<group>";
 		};
+		5BD7C24826DE5C6B006D00C2 /* Full screen GIF */ = {
+			isa = PBXGroup;
+			children = (
+				5BD7C24B26DE5D0D006D00C2 /* FullScreenGIFViewController.swift */,
+				5BD7C24C26DE5D0D006D00C2 /* FullScreenGIFViewController.xib */,
+			);
+			path = "Full screen GIF";
+			sourceTree = "<group>";
+		};
 		5BDB7A9D26D7A82600F78B94 = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +248,7 @@
 		5BDB7ABE26D7BA3D00F78B94 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5BD7C24826DE5C6B006D00C2 /* Full screen GIF */,
 				5BDB7ABD26D7BA1B00F78B94 /* GIFs Feed View Controller */,
 				5BDB7AC926D7CDE600F78B94 /* Favourite GIFs View Controller */,
 			);
@@ -393,6 +407,7 @@
 			files = (
 				5BDB7AB626D7A82A00F78B94 /* LaunchScreen.storyboard in Resources */,
 				5BDB7AB326D7A82A00F78B94 /* Assets.xcassets in Resources */,
+				5BD7C24E26DE5D0D006D00C2 /* FullScreenGIFViewController.xib in Resources */,
 				5BDB7AF426D97C0B00F78B94 /* GIFTableViewCell.xib in Resources */,
 				5BDB7AB126D7A82600F78B94 /* Main.storyboard in Resources */,
 			);
@@ -467,6 +482,7 @@
 				5BDB7AC426D7BDCC00F78B94 /* UISearchBar+TextFieldColor.swift in Sources */,
 				5BDB7ADF26D8352C00F78B94 /* GifImage.swift in Sources */,
 				5B3FB88326DD0384006EE06E /* GIFCollectionViewCell.swift in Sources */,
+				5BD7C24D26DE5D0D006D00C2 /* FullScreenGIFViewController.swift in Sources */,
 				5BDB7AFA26D98AD900F78B94 /* ReusableViewIdentifiable.swift in Sources */,
 				5BDB7AD026D7F14900F78B94 /* API.swift in Sources */,
 				5BD7C24326DD29D7006D00C2 /* FavouriteGIFListViewModel.swift in Sources */,
